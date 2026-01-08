@@ -1,12 +1,31 @@
-import { Hono } from "hono";
+import { Context, Hono, Next } from "hono";
 import { serve } from "@hono/node-server";
 import { serveStatic } from "@hono/node-server/serve-static";
 import { Renderer } from "./core/renderer/Renderer.ts";
 import { Homeview } from "./modules/blog/views/Homeview.ts";
+import { PageMetadata, SafeHtml } from "./shared/schemas/html.schema.ts";
+import { render } from "./shared/utils/render.ts";
 
-const app = new Hono();
 
+type ZestEnv = {
+    Variables: {
+        renderZest: (view: SafeHtml, meta: PageMetadata) => Promise<Response>;
+    }
+};
 
+const app = new Hono<ZestEnv>();
+
+export const renderMiddleware = async (c: Context<ZestEnv>, next: Next) => {
+    const renderer = new Renderer();
+
+    c.set('renderZest', async (view: SafeHtml, meta: PageMetadata) => {
+        const html = await renderer.render(view, meta);
+        return c.html(html);
+    });
+
+    await next();
+};
+app.use("*", renderMiddleware)
 app.use('/assets/theme/*', serveStatic({
     root: "./",
     rewriteRequestPath: (path) => path.replace(/^\/assets\/theme/, 'src/core/theme')
@@ -16,17 +35,24 @@ app.use('*', async (c, next) => {
     await next();
 });
 
-app.get("/", (c) => {
-    return c.html(
-        Renderer.render(
-            { title: "Accueil" },
-            () => Homeview({ name: 'Zest est en vie 🍋' })
-        ))
-});
+app.get("/", async (c) => {
+    const view = Homeview({ name: "Zest" });
+    return await render(c, view, { title: "Accueil", lang: "fr", styles: ["/assets/theme/style.css"] })
+})
+app.get("/test", (c) => {
+    const s = performance.now();
+    const v = Homeview({ name: "ZEST" });
+    const e = performance.now();
+    console.log(`Rendu en ${e - s}ms`);
+    return c.html("vitesse test");
+})
 
-console.log('Le serveur est lancé sur http://localhost:3000');
+app.get('/favicon.ico', (c) => c.text('', 200));
 
 serve({
     fetch: app.fetch,
     port: 3000,
+    hostname: '127.0.0.1'
+}, (info) => {
+    console.log(`🚀 Serveur Zest lancé sur http://${info.address}:${info.port}`);
 });

@@ -5,6 +5,6 @@ export const ThemeNameSchema = z.enum(["default", "dark", "zest-gold"]);
 export type ThemeName = z.infer<typeof ThemeNameSchema>;
 
 export interface LayoutHelpers {
-    theme: (name: string) => SafeHtml
+    theme: (name: ThemeName) => SafeHtml
     pageStyles: () => SafeHtml
 }

@@ -1,5 +1,8 @@
--- 07/01/2026
+08/01/2026
 
-[x] - Installation du serveur Hono
-[] - Création du mini-moteur de template
-    [x] - Helper pour nettoyer le html (évolutif)
+[X] Mise en place du projet
+[X] Création du moteur de template maison
+
+09/01/2026
+
+[] CSS pour la page principale
