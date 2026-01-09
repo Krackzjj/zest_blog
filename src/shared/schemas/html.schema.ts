@@ -1,9 +1,5 @@
 import { z } from "zod/v4";
-
-export const SafeHtmlSchema = z.object({
-    __html: z.string()
-});
-export type SafeHtml = z.infer<typeof SafeHtmlSchema>;
+import { FontNameSchema } from "@shared/schemas/ui.schema.ts";
 
 export const HtmlEscapeMap = {
     "&": "&amp;",
@@ -20,9 +16,11 @@ export const ExcapedStringSchema = z.string().brand<"EscapedString">();
 export type EscapedString = z.infer<typeof ExcapedStringSchema>;
 
 export const PageMetadataSchema = z.object({
-    lang: z.string().min(2).optional().default("fr"),
+    lang: z.string().min(2).default("fr").optional(),
     title: z.string().min(1),
     description: z.string().optional(),
-    styles: z.array(z.string()).default(["/public/main.css"])
+    fonts: z.union([FontNameSchema, z.array(FontNameSchema)]).optional(),
+    styles: z.array(z.string()).default(["/public/main.css"]).optional()
 });
 export type PageMetadata = z.infer<typeof PageMetadataSchema>;
+

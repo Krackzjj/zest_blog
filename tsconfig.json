@@ -3,6 +3,8 @@
     "target": "ESNext",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx",
     "strict": true,
     "skipLibCheck": true,
     "outDir": "./dist",
@@ -11,6 +13,27 @@
     "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@blog/*": [
+        "src/modules/blog/*"
+      ],
+      "@core/*": [
+        "src/core/*"
+      ],
+      "@modules/*": [
+        "src/modules/*"
+      ],
+      "@shared/*": [
+        "src/shared/*"
+      ],
+      "@themes/*": [
+        "src/core/themes/*"
+      ]
+    }
   },
   "include": [
     "src/**/*"

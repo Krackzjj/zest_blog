@@ -1,4 +1,4 @@
-import { HtmlEscapeMap, UnsafeCharsEnum, ExcapedStringSchema, EscapedString } from "../schemas/html.schema.ts";
+import { HtmlEscapeMap, UnsafeCharsEnum, ExcapedStringSchema, EscapedString } from "@shared/schemas/html.schema.ts";
 
 export const escapeHtml = (str: string): EscapedString => {
 
