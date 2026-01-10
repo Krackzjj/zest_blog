@@ -19,8 +19,6 @@ export const PageMetadataSchema = z.object({
     lang: z.string().min(2).default("fr").optional(),
     title: z.string().min(1),
     description: z.string().optional(),
-    fonts: z.union([FontNameSchema, z.array(FontNameSchema)]).optional(),
-    styles: z.array(z.string()).default(["/public/main.css"]).optional()
 });
 export type PageMetadata = z.infer<typeof PageMetadataSchema>;
 

@@ -6,6 +6,6 @@ import { Child } from "hono/jsx";
 const renderer = new Renderer();
 
 export const render = async (c: Context, view: Child, meta: PageMetadata) => {
-    const html = await renderer.render(view, meta);
-    return c.html(html);
+  const html = await renderer.render(c, view, meta);
+  return c.html(html);
 };

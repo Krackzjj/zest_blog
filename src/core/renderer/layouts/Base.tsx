@@ -1,24 +1,39 @@
 import { Child } from "hono/jsx";
 import type { PageMetadata } from "@shared/schemas/html.schema.ts";
-import type { LayoutComponent, LayoutHelpers } from "@shared/schemas/ui.schema.ts";
+import type { FontName, LayoutComponent, ScriptName, ThemeName} from "@shared/schemas/ui.schema.ts";
+import { Context } from "hono";
+import { useFonts } from "@/shared/hooks/use-ressources.ts";
 
 interface BaseProps {
     children: Child;
     meta: PageMetadata;
-    helpers: LayoutHelpers;
+    theme: ThemeName;
+    fonts: FontName[];
+    styles: string[];    // Récupéré depuis c.get('styles_registry')
+    scripts: ScriptName[];
+
 };
 
-export const Base: LayoutComponent = ({ meta, helpers, children }: BaseProps) => {
+export const Base: LayoutComponent = ({ 
+    meta,
+    fonts,
+    theme,
+    children
+}: BaseProps) => {
     return (
         <html lang={meta.lang || "fr"} >
             <head>
                 <meta charset="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>{meta.title} </title>
+                {meta.description && <meta name="description" content={meta.description}/>}
                 <link rel="stylesheet" href="/assets/core/reset.css" />
-                {helpers.fonts(["Inter", "JetBrains Mono"])}
+                <link rel="stylesheet" href={`/assets/themes/${theme}/variables.css`} />
+                {fonts.map((font) => (
+                    <link key={font} rel="stylesheet" href={`/assets/fonts/${font}.css`} />
+                ))}
                 <link ref="icon" type="image/svg+xml" href="/favicon.svg" />
-                {helpers.theme("default")}
+                
             </head>
             <body>
                 <main>
