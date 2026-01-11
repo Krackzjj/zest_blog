@@ -8,8 +8,8 @@ export const registerRenderer = (app: Hono<ZestEnv>)=> {
     app.use("*", async (c, next) => {
         const renderer = new Renderer();
     
-        c.set('render-zest', async (view: Child, meta: PageMetadata) => {
-            const html = await renderer.render(view, meta);
+        c.set('zest-render', async (view: Child, meta: PageMetadata) => {
+            const html = await renderer.render(c, view, meta);
             return c.html(html);
         });
     

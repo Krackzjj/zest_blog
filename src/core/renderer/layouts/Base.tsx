@@ -1,8 +1,6 @@
 import { Child } from "hono/jsx";
 import type { PageMetadata } from "@shared/schemas/html.schema.ts";
 import type { FontName, LayoutComponent, ScriptName, ThemeName} from "@shared/schemas/ui.schema.ts";
-import { Context } from "hono";
-import { useFonts } from "@/shared/hooks/use-ressources.ts";
 
 interface BaseProps {
     children: Child;
@@ -21,14 +19,14 @@ export const Base: LayoutComponent = ({
     children
 }: BaseProps) => {
     return (
-        <html lang={meta.lang || "fr"} >
+        <html lang={meta.lang || "fr"} data-theme={theme}>
             <head>
                 <meta charset="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <title>{meta.title} </title>
+                <title>ZEST  | {meta.title} </title>
                 {meta.description && <meta name="description" content={meta.description}/>}
                 <link rel="stylesheet" href="/assets/core/reset.css" />
-                <link rel="stylesheet" href={`/assets/themes/${theme}/variables.css`} />
+                <link rel="stylesheet" href={`/assets/themes/${theme}/tokens.css`} />
                 {fonts.map((font) => (
                     <link key={font} rel="stylesheet" href={`/assets/fonts/${font}.css`} />
                 ))}
