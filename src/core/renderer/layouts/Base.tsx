@@ -1,6 +1,6 @@
 import { Child } from "hono/jsx";
 import type { PageMetadata } from "@shared/schemas/html.schema.ts";
-import type { FontName, LayoutComponent, ScriptName, ThemeName} from "@shared/schemas/ui.schema.ts";
+import type { FontName, LayoutComponent, ScriptName, ThemeName } from "@shared/schemas/ui.schema.ts";
 
 interface BaseProps {
     children: Child;
@@ -12,10 +12,11 @@ interface BaseProps {
 
 };
 
-export const Base: LayoutComponent = ({ 
+export const Base: LayoutComponent = ({
     meta,
     fonts,
     theme,
+    styles,
     children
 }: BaseProps) => {
     return (
@@ -24,14 +25,17 @@ export const Base: LayoutComponent = ({
                 <meta charset="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>ZEST  | {meta.title} </title>
-                {meta.description && <meta name="description" content={meta.description}/>}
+                {meta.description && <meta name="description" content={meta.description} />}
                 <link rel="stylesheet" href="/assets/core/reset.css" />
                 <link rel="stylesheet" href={`/assets/themes/${theme}/tokens.css`} />
+                <link rel="stylesheet" href={`/assets/themes/${theme}/main.css`} />
+                {styles.map((style) => (
+                    <link key={style} rel="stylesheet" href={`/assets/themes/${theme}/${style}.css`} />
+                ))}
                 {fonts.map((font) => (
                     <link key={font} rel="stylesheet" href={`/assets/fonts/${font}.css`} />
                 ))}
-                <link ref="icon" type="image/svg+xml" href="/favicon.svg" />
-                
+                <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
             </head>
             <body>
                 <main>

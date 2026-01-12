@@ -4,29 +4,17 @@ import { Hono } from "hono";
 import { serveStatic } from "@hono/node-server/serve-static";
 
 export const registerAssets = (app: Hono<ZestEnv>) => {
+  const root = './';
 
-  const root = process.cwd();
   /** Favicon */
-  app.use("/favicon.ico", serveStatic({ path: join(root,"public/favicon.svg") }));
-  app.use("/favicon.svg", serveStatic({ path: join(root,"public/favicon.svg") }));
+  app.use("/favicon.ico", serveStatic({ path: join(root, "public/favicon.svg") }));
+  app.use("/favicon.svg", serveStatic({ path: join(root, "public/favicon.svg") }));
 
   app.use(
     "/assets/core/*",
     serveStatic({
       root,
-      rewriteRequestPath: (path) => {
-        const newPath = path.replace(/^\/assets\/core/, "src/core/themes");
-        return newPath;
-      },
-    })
-  );
-
-  app.use(
-    "/assets/core/fonts/*",
-    serveStatic({
-      root,
-      rewriteRequestPath: (path) =>
-        path.replace(/^\/assets\/core\/fonts/, "src/core/themes/"),
+      rewriteRequestPath: (path) => path.replace(/^\/assets\/core/, "src/core/themes"),
     })
   );
 
@@ -34,8 +22,15 @@ export const registerAssets = (app: Hono<ZestEnv>) => {
     "/assets/themes/*",
     serveStatic({
       root,
-      rewriteRequestPath: (path) =>
-        path.replace(/^\/assets\/themes/, "src/core/themes"),
+      rewriteRequestPath: (path) => path.replace(/^\/assets\/themes/, "src/core/themes"),
+    })
+  );
+
+  app.use(
+    "/assets/fonts/*",
+    serveStatic({
+      root,
+      rewriteRequestPath: (path) => path.replace(/^\/assets\/fonts/, "src/core/themes/fonts"),
     })
   );
 };
