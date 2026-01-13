@@ -1,50 +1,49 @@
+// src/core/renderer/Renderer.tsx
 import { Child } from "hono/jsx";
 import { Base } from "@core/renderer/layouts/Base.tsx";
-import type { PageMetadata } from "@shared/schemas/html.schema.ts";
-import type { FontName, LayoutComponent, ScriptName, ThemeName } from "@shared/schemas/ui.schema.ts";
+import { ZestProvider } from "@shared/contexts/zest-context.tsx";
+import { raw } from "hono/html";
 import { Context } from "hono";
-import { html, raw } from "hono/html";
 
 export class Renderer {
     public async render(
         c: Context,
         viewContent: Child,
-        meta: PageMetadata & { layout?: Child },
+        meta: any
     ): Promise<string> {
-
+        // 1. Initialisation des registres
         const stylesSet = new Set<string>();
-        const scriptSet = new Set<ScriptName>();
         const fontSet = new Set<string>();
-
         c.set('styles-registry', stylesSet);
-        c.set('scripts-registry', scriptSet);
         c.set('fonts-registry', fontSet);
         c.set('theme-name', 'default');
 
-        const viewResult = await viewContent;
+        // 2. PREMIER RENDU : On génère uniquement la vue dans le Provider.
+        const viewHtml = (
+            <ZestProvider c={c}>
+                {viewContent}
+            </ZestProvider>
+        ).toString();
 
-        const contentHtml = raw(viewResult?.toString())
+        // 3. RÉCUPÉRATION DES DONNÉES : Maintenant les Sets sont pleins !
+        const stylesArray = Array.from(stylesSet);
+        const fontsArray = Array.from(fontSet);
+        const theme = c.get('theme-name');
+        const SelectedLayout = (meta.layout || Base);
 
-        const stylesArray = Array.from(c.get('styles-registry') as Set<string>);
-        const fontsArray = Array.from(c.get('fonts-registry') as Set<FontName>);
-        const scriptsArray = Array.from(c.get('scripts-registry') as Set<ScriptName>);
-        const theme = c.get('theme-name') as ThemeName;
+        // 4. SECOND RENDU : On rend le Layout final.
+        const finalHtml = (
+            <ZestProvider c={c}>
+                <SelectedLayout
+                    meta={meta}
+                    theme={theme}
+                    fonts={fontsArray}
+                    styles={stylesArray}
+                    children={raw(viewHtml)}
+                />
+            </ZestProvider>
+        ).toString();
 
-        // 2. Appel du Layout
-        const SelectedLayout = (meta.layout || Base) as LayoutComponent
-
-        const layoutElement = await (SelectedLayout({
-            meta,
-            theme,
-            fonts: fontsArray,
-            styles: stylesArray,
-            scripts: scriptsArray,
-            children: contentHtml
-        }) as Child);
-
-
-
-        if (!layoutElement) throw new Error("Render failed: layout is empty");
-        return `<!DOCTYPE html>\n${layoutElement}`;
+        return `<!DOCTYPE html>\n${finalHtml}`;
     }
 }

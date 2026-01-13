@@ -1,13 +1,11 @@
 import { useStyles } from "@/shared/hooks/use-ressources.ts";
-import { Context } from "hono";
 
 interface PaletteProps {
-    context: Context;
     color: string;
 }
 
-const Palette = ({ context, color }: PaletteProps) => {
-    useStyles(context, "palette", true);
+const Palette = ({ color }: PaletteProps) => {
+    useStyles("palette", true);
 
     return (
         <>

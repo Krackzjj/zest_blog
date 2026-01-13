@@ -32,6 +32,9 @@
       ],
       "@themes/*": [
         "src/core/themes/*"
+      ],
+      "@contexts/*": [
+        "src/shared/contexts/*"
       ]
     }
   },

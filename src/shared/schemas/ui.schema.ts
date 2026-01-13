@@ -1,6 +1,7 @@
 import { z } from "zod/v4"
 import { PageMetadata } from "@shared/schemas/html.schema.ts";
 import { Child } from "hono/jsx";
+import { Context } from "hono";
 
 export const ThemeNameSchema = z.enum(["default", "dark", "zest-gold"]);
 export type ThemeName = z.infer<typeof ThemeNameSchema>;
@@ -14,6 +15,6 @@ export type LayoutComponent = (props: {
     children: Child;
     theme: ThemeName;
     fonts: FontName[];
-    styles: string[];
+    styles: string;
     scripts: ScriptName[];
 }) => Child | Promise<Child>;

@@ -7,6 +7,9 @@ import { registerAssets } from "@core/middlewares/assets.middleware.ts";
 import { registerLogger } from "@core/middlewares/logs.middleware.ts";
 import { FontName, ScriptName, ThemeName } from "./shared/schemas/ui.schema.ts";
 import AppRouter from "@modules/shared.module.ts";
+import EventEmitter from "node:events";
+import { streamSSE } from "hono/streaming";
+import { watch } from "node:fs";
 
 export type ZestEnv = {
   Variables: {
@@ -19,6 +22,47 @@ export type ZestEnv = {
 };
 
 const app = new Hono<ZestEnv>();
+const hmrEvents = new EventEmitter();
+
+hmrEvents.setMaxListeners(20);
+app.get("/__hmr", (c) => {
+  return streamSSE(c, async (stream) => {
+    await stream.writeSSE({ data: "connected", event: "ping" });
+    const listener = (data: string) => {
+      stream.writeSSE({ data, event: 'message' });
+    };
+
+    hmrEvents.on('reload', listener);
+
+    stream.onAbort(() => {
+      hmrEvents.off('reload', listener);
+    });
+
+    while (true) {
+      await stream.sleep(30000)
+    }
+  })
+});
+
+if (process.env.NODE_ENV !== 'production') {
+  // Cette syntaxe récupère automatiquement le bon type (Number ou Timer object)
+  let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+
+  watch('./src/core/themes', { recursive: true }, (eventType, filename) => {
+    if (filename && filename.endsWith('.css')) {
+      if (debounceTimer) clearTimeout(debounceTimer);
+
+      debounceTimer = setTimeout(() => {
+        const normalizedFile = filename.replace(/\\/g, '/');
+        console.log(`✨ Style modifié : ${normalizedFile}`);
+        hmrEvents.emit('reload', JSON.stringify({ file: normalizedFile }));
+        debounceTimer = null;
+      }, 50);
+    }
+  });
+}
+
+
 
 registerAssets(app);
 registerRenderer(app);

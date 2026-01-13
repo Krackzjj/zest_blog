@@ -4,7 +4,7 @@ import { StyleGuideView } from "../views/StylesGuideView.tsx";
 
 export class StyleGuideController {
     async index(c: Context) {
-        const view = <StyleGuideView context={c} />;
+        const view = <StyleGuideView />;
         return await render(c, view, { title: 'StyleGuide' });
     }
 }
