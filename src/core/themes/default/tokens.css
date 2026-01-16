@@ -1,13 +1,13 @@
 :root {
-    --color-accent: 38 94% 52%;
-    --color-primary: 217 91% 60%;
-    --color-secondary: 263 70% 50%;
-    --color-neutral: 220 13% 46%;
+    --color-accent: 165 70% 45%;
+    --color-primary: 222 70% 55%;
+    --color-secondary: 262 70% 58%;
+    --color-neutral: 215 16% 42%;
 
-    --color-success: 158 64% 52%;
-    --color-danger: 351 89% 61%;
-    --color-warning: 24 96% 73%;
-    --color-info: 221 79% 48%;
+    --color-success: 135 55% 42%;
+    --color-danger: 350 70% 58%;
+    --color-warning: 30 92% 55%;
+    --color-info: 200 70% 55%;
 
     --accent: hsl(var(--color-accent));
     --accent-light: hsl(from hsl(var(--color-accent)) h s calc(l + 30%));

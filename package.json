@@ -4,8 +4,10 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch --env-file=.env src/main.tsx",
-    "build": "tsc",
+    "dev:server": "tsx --watch src/main.tsx",
+    "dev:client": "tsx scripts/build-client.ts --watch",
+    "dev": "pnpm run /^dev:/",
+    "build": "tsx scripts/build-client.ts && tsc",
     "start": "node dist/main.js"
   },
   "keywords": [],
@@ -19,6 +21,7 @@
     "zod": "^4.3.5"
   },
   "devDependencies": {
+    "esbuild": "^0.27.2",
     "@types/node": "^25.0.3",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"

@@ -1,20 +1,16 @@
 import { z } from "zod/v4"
 import { PageMetadata } from "@shared/schemas/html.schema.ts";
 import { Child } from "hono/jsx";
-import { Context } from "hono";
 
 export const ThemeNameSchema = z.enum(["default", "dark", "zest-gold"]);
 export type ThemeName = z.infer<typeof ThemeNameSchema>;
-export const ScriptNameSchema = z.enum(["main"]);
-export type ScriptName = z.infer<typeof ScriptNameSchema>;
 export const FontNameSchema = z.enum(["Inter", "JetBrains Mono"]);
 export type FontName = z.infer<typeof FontNameSchema>;
 
-export type LayoutComponent = (props: {
-    meta: PageMetadata,
-    children: Child;
-    theme: ThemeName;
-    fonts: FontName[];
-    styles: string;
-    scripts: ScriptName[];
-}) => Child | Promise<Child>;
+export const VariantName = z.enum(["xs", "sm", "md", "lg", "xl", "2xl", "3xl"]);
+export type VariantName = z.infer<typeof VariantName>;
+export const ColorName = z.enum(["accent", "primary", "secondary", "neutral", "success", "danger", "info", "warning"]);
+export type ColorName = z.infer<typeof ColorName>;
+
+export const TypographyTags = z.enum(["h1", "h2", "h3", "h4", "h5", "h6", "p", "span", "label"]); //TODO: ajouté des tags au besoin
+export type TypographyTags = z.infer<typeof TypographyTags>;

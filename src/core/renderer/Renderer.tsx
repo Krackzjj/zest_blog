@@ -14,7 +14,9 @@ export class Renderer {
         // 1. Initialisation des registres
         const stylesSet = new Set<string>();
         const fontSet = new Set<string>();
+        const scriptsSet = new Set<string>();
         c.set('styles-registry', stylesSet);
+        c.set('scripts-registry', scriptsSet);
         c.set('fonts-registry', fontSet);
         c.set('theme-name', 'default');
 
@@ -28,6 +30,7 @@ export class Renderer {
         // 3. RÉCUPÉRATION DES DONNÉES : Maintenant les Sets sont pleins !
         const stylesArray = Array.from(stylesSet);
         const fontsArray = Array.from(fontSet);
+        const scriptsArray = Array.from(scriptsSet);
         const theme = c.get('theme-name');
         const SelectedLayout = (meta.layout || Base);
 
@@ -39,6 +42,7 @@ export class Renderer {
                     theme={theme}
                     fonts={fontsArray}
                     styles={stylesArray}
+                    scripts={scriptsArray}
                     children={raw(viewHtml)}
                 />
             </ZestProvider>

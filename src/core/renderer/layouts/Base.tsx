@@ -1,6 +1,6 @@
 import { Child } from "hono/jsx";
 import type { PageMetadata } from "@shared/schemas/html.schema.ts";
-import type { FontName, LayoutComponent, ScriptName, ThemeName } from "@shared/schemas/ui.schema.ts";
+import type { FontName, ThemeName } from "@shared/schemas/ui.schema.ts";
 import { ZestProvider } from "@/shared/contexts/zest-context.tsx";
 import { Context } from "hono";
 
@@ -10,7 +10,7 @@ interface BaseProps {
     theme: ThemeName;
     fonts: FontName[];
     styles: Set<string> | string[];
-    scripts: ScriptName[];
+    scripts: Set<string> | string[];
     context: Context;
 };
 
@@ -19,10 +19,12 @@ export const Base = ({
     fonts,
     theme,
     styles,
+    scripts,
     children,
     context
 }: BaseProps & { context: Context }) => {
     const styleArray = Array.from(styles);
+    const scriptsArray = Array.from(scripts);
     return (
         <ZestProvider c={context}>
             <html lang={meta.lang || "fr"} data-theme={theme}>
@@ -49,6 +51,9 @@ export const Base = ({
                     <main>
                         {children}
                     </main>
+                    {scriptsArray.map(script => (
+                        <script src={`/public/scripts/${script}.js`} defer />
+                    ))}
                 </body>
             </html>
         </ZestProvider>

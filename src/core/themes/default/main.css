@@ -73,3 +73,9 @@ a:hover {
 a:active {
     color: var(--link-active);
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}

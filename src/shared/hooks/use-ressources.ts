@@ -1,4 +1,4 @@
-import { FontName, ScriptName, ThemeName } from "@shared/schemas/ui.schema.ts";
+import { FontName, ThemeName } from "@shared/schemas/ui.schema.ts";
 import { useZest } from "@contexts/zest-context.tsx";
 
 export const useFonts = (name: FontName) => {
@@ -9,12 +9,12 @@ export const useFonts = (name: FontName) => {
         registry.add(normalizedName)
     };
 };
-export const useScripts = (name: ScriptName) => {
+export const useScripts = (name: string, page?: boolean, components?: boolean) => {
     const { c } = useZest();
-    const registry = c.get('scripts-registry') as Set<ScriptName>;
+    const registry = c.get('scripts-registry');
     if (registry) {
-        const normalizedName = name.toLowerCase() as ScriptName;
-        registry.add(normalizedName)
+        const normalizedName = name.toLowerCase();
+        registry.add(`${page ? 'pages/' : ''}${components ? 'components/' : ''}${normalizedName}`)
     };
 };
 export const useStyles = (name: string, components?: boolean) => {
