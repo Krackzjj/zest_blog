@@ -1,4 +1,32 @@
 .style-section {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    gap: var(--space-2);
+}
+
+.style-card-h,
+.style-card-v {
+    display: flex;
+    gap: var(--space-2);
+
+    &>article {
+        flex: auto;
+
+        &:nth-child(1) {
+            flex-shrink: 0;
+        }
+    }
+}
+
+.style-card-v {
+    flex-direction: column;
+}
+
+.ff-jm {
+    font-family: var(--font-mono);
+}
+
+.ff-i {
+    font-family: var(--font-sans);
 }

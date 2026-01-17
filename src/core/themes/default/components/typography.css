@@ -53,3 +53,9 @@
 [data-color="warning"] {
     color: var(--warning);
 }
+
+.text-ud {
+    text-decoration: var(--neutral) underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+}

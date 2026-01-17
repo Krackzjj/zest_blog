@@ -1,0 +1,46 @@
+ul {
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding-inline: 0;
+    border-radius: var(--radius-md);
+
+    &>li {
+        padding-block: .1em;
+        padding-inline: .5em;
+        cursor: default;
+        transition:
+            background-color var(--duration-base) var(--ease-in-out),
+            color var(--duration-base) var(--ease-in-out);
+
+        &:not(ol>li):hover {
+            background-color: var(--primary);
+            color: var(--neutral-light);
+        }
+
+    }
+}
+
+ol {
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+    padding-inline: 0;
+    border-radius: var(--radius-md);
+
+    &>li {
+        padding-block: .1em;
+        padding-inline: .5em;
+        cursor: default;
+
+        &:hover {
+            background-color: var(--primary);
+            color: var(--neutral-light);
+
+            &::marker {
+                color: initial !important;
+            }
+        }
+    }
+}

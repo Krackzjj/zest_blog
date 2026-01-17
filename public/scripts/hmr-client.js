@@ -1,38 +1,46 @@
 // src/client/hmr-client.ts
-var isFirstConnection = true;
+var isFirstConnexion = true;
 var connectHMR = () => {
   const evtSource = new EventSource("/__hmr");
   evtSource.onopen = () => {
-    if (!isFirstConnection) {
-      console.log("\u267B\uFE0F Serveur red\xE9marr\xE9, rechargement de la page...");
+    if (!isFirstConnexion) {
+      console.log("\u267B\uFE0F Serveur reconnect\xE9, rechargement...");
       window.location.reload();
     } else {
-      console.log("\u{1F680} Connexion HMR \xE9tablie");
-      isFirstConnection = false;
+      console.log("\u2705 Connexion HMR \xE9tablie");
+      isFirstConnexion = false;
     }
   };
   evtSource.onmessage = (event) => {
+    if (event.data === "connected" || event.data === "ping") return;
     try {
-      if (event.data === "connected") return;
       const data = JSON.parse(event.data);
-      if (data.file) {
-        console.log("\u{1F514} Signal HMR re\xE7u pour :", data.file);
+      console.log("\u{1F48E} Action HMR :", data.type, "pour", data.file);
+      if (data.type === "style") {
         const links = document.querySelectorAll('link[rel="stylesheet"]');
+        let found = false;
         links.forEach((link) => {
-          const linkUrl = new URL(link.href, window.location.origin);
-          if (linkUrl.pathname.includes(data.file)) {
-            const nextHref = linkUrl.pathname + "?t=" + Date.now();
-            link.href = nextHref;
-            console.log("\u{1F485} Style mis \xE0 jour avec succ\xE8s !");
+          const linkFilename = link.href.split("/").pop()?.split("?")[0];
+          if (linkFilename === data.file) {
+            const url = new URL(link.href, window.location.origin);
+            url.searchParams.set("t", Date.now().toString());
+            link.href = url.pathname + url.search;
+            console.log(`\u2705 Style mis \xE0 jour : ${linkFilename}`);
+            found = true;
           }
         });
+        if (!found) {
+          console.warn(`\u26A0\uFE0F Aucun <link> trouv\xE9 pour le fichier : ${data.file}`);
+        }
+      } else if (data.type === "reload") {
+        window.location.reload();
       }
     } catch (err) {
-      console.error("\u274C Erreur lors du traitement du message HMR :", err);
+      console.error("\u274C Erreur HMR :", err);
     }
   };
   evtSource.onerror = () => {
-    console.warn("\u{1F50C} Connexion HMR perdue (le serveur red\xE9marre peut-\xEAtre...)");
+    console.warn("\u{1F50C} Connexion HMR perdue...");
   };
 };
 connectHMR();

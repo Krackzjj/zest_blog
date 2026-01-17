@@ -9,48 +9,47 @@
     --color-warning: 30 92% 55%;
     --color-info: 200 70% 55%;
 
-    --accent: hsl(var(--color-accent));
-    --accent-light: hsl(from hsl(var(--color-accent)) h s calc(l + 30%));
-    --accent-dark: hsl(from hsl(var(--color-accent)) h s calc(l - 15%));
+    --accent: hsl(165, 70%, 45%);
+    --accent-light: hsl(165, 70%, 75%);
+    --accent-dark: hsl(165, 70%, 30%);
 
-    --primary: hsl(var(--color-primary));
-    --primary-light: hsl(from hsl(var(--color-primary)) h s calc(l + 20%));
-    --primary-dark: hsl(from hsl(var(--color-primary)) h s calc(l - 15%));
+    --primary: hsl(222, 70%, 55%);
+    --primary-light: hsl(222, 70%, 75%);
+    --primary-dark: hsl(222, 70%, 40%);
 
-    --secondary: hsl(var(--color-secondary));
-    --secondary-light: hsl(from hsl(var(--color-secondary)) h s calc(l + 25%));
-    --secondary-dark: hsl(from hsl(var(--color-secondary)) h s calc(l - 15%));
+    --secondary: hsl(262, 70%, 58%);
+    --secondary-light: hsl(262, 70%, 83%);
+    --secondary-dark: hsl(262, 70%, 43%);
 
-    --neutral-light: hsl(from hsl(var(--color-neutral)) h calc(s * 0.5) 96%);
-    --neutral: hsl(var(--color-neutral));
-    --neutral-dark: hsl(from hsl(var(--color-neutral)) h s 20%);
+    --success: hsl(135, 55%, 42%);
+    --success-light: hsl(135, 55%, 82%);
+    --success-dark: hsl(135, 55%, 27%);
 
-    --success: hsl(var(--color-success));
-    --success-light: hsl(from hsl(var(--color-success)) h s calc(l + 40%));
-    --success-dark: hsl(from hsl(var(--color-success)) h s calc(l - 15%));
+    --danger: hsl(350, 70%, 58%);
+    --danger-light: hsl(350, 70%, 88%);
+    --danger-dark: hsl(350, 70%, 43%);
 
-    --danger: hsl(var(--color-danger));
-    --danger-light: hsl(from hsl(var(--color-danger)) h s calc(l + 30%));
-    --danger-dark: hsl(from hsl(var(--color-danger)) h s calc(l - 15%));
+    --warning: hsl(30, 92%, 55%);
+    --warning-light: hsl(30, 92%, 90%);
+    --warning-dark: hsl(30, 92%, 40%);
 
-    --warning: hsl(var(--color-warning));
-    --warning-light: hsl(from hsl(var(--color-warning)) h s calc(l + 35%));
-    --warning-dark: hsl(from hsl(var(--color-warning)) h s calc(l - 15%));
+    --info: hsl(200, 70%, 55%);
+    --info-light: hsl(200, 70%, 90%);
+    --info-dark: hsl(200, 70%, 40%);
 
-    --info: hsl(var(--color-info));
-    --info-light: hsl(from hsl(var(--color-info)) h s calc(l + 35%));
-    --info-dark: hsl(from hsl(var(--color-info)) h s calc(l - 15%));
+    --neutral-light: hsl(215, 8%, 96%);
+    --neutral: hsl(215, 16%, 42%);
+    --neutral-dark: hsl(215, 16%, 20%);
 
     --bg-page: white;
     --bg-card: var(--neutral-light);
     --bg-code: var(--secondary-dark);
 
-    --text-primary: var(--neutral-dark);
-    --text-secondary: var(--neutral);
-    --text-muted: hsl(from hsl(var(--color-neutral)) h s 65%);
+    --text-primary: hsl(215, 16%, 20%);
+    --text-secondary: hsl(215, 16%, 42%);
+    --text-muted: hsl(215, 16%, 65%);
 
-    --border: hsl(from hsl(var(--color-neutral)) h calc(s * 0.5) 85%);
-    --border-focus: var(--accent);
+    --border: hsl(215, 8%, 85%);
 
     --link: var(--primary);
     --link-hover: var(--primary-dark);
@@ -141,6 +140,7 @@
         background-color var(--duration-base) var(--ease-in-out),
         border-color var(--duration-base) var(--ease-in-out);
     --transition-transform: transform var(--duration-base) var(--ease-in-out);
+    --transition-transform-fast: transform var(--duration-fast) var(--ease-in-out);
     --transition-all: all var(--duration-base) var(--ease-in-out);
 
     --breakpoint-sm: 640px;

@@ -1,4 +1,4 @@
-import { join } from "node:path";
+import { join } from "path";
 import { ZestEnv } from "@/main.tsx";
 import { Hono } from "hono";
 import { serveStatic } from "@hono/node-server/serve-static";

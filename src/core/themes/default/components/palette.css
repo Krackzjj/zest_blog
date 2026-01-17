@@ -41,7 +41,7 @@ div[data-color="warning"] {
     transition: var(--transition-transform);
 
     &::after {
-        content: "Color: " attr(data-color);
+        content: attr(data-color);
         position: absolute;
         top: 100%;
         left: 50%;
@@ -58,6 +58,7 @@ div[data-color="warning"] {
         transition: opacity .2s, transform .2s;
         pointer-events: none;
         z-index: 10;
+        text-transform: capitalize;
     }
 
     &::before {

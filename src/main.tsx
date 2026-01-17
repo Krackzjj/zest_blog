@@ -1,22 +1,23 @@
 import { Hono } from "hono";
 import { serve } from "@hono/node-server";
-import type { PageMetadata } from "@shared/schemas/html.schema.ts";
+
 import { Child } from "hono/jsx";
 import { registerRenderer } from "@core/middlewares/renderer.middleware.ts";
 import { registerAssets } from "@core/middlewares/assets.middleware.ts";
 import { registerLogger } from "@core/middlewares/logs.middleware.ts";
-import { FontName, ScriptName, ThemeName } from "./shared/schemas/ui.schema.ts";
+import type { FontName, ThemeName } from "@shared/schemas/ui.schema.ts";
+import type { PageMetadata } from "@shared/schemas/html.schema.ts";
 import AppRouter from "@modules/shared.module.ts";
-import EventEmitter from "node:events";
+import EventEmitter from "events";
 import { streamSSE } from "hono/streaming";
-import { watch } from "node:fs";
+import { watch } from "fs";
 
 export type ZestEnv = {
   Variables: {
     "zest-render": (view: Child, meta: PageMetadata) => Promise<Response>;
     "fonts-registry": Set<FontName>;
-    "scripts-registry": Set<ScriptName>;
-    "styles-registry": Set<any>; //TODO: Pour les composants....
+    "scripts-registry": Set<string>;
+    "styles-registry": Set<string>;
     "themes-registry": Set<ThemeName>;
   };
 };
@@ -27,38 +28,48 @@ const hmrEvents = new EventEmitter();
 hmrEvents.setMaxListeners(20);
 app.get("/__hmr", (c) => {
   return streamSSE(c, async (stream) => {
-    await stream.writeSSE({ data: "connected", event: "ping" });
+    await stream.writeSSE({ data: "connected" });
     const listener = (data: string) => {
-      stream.writeSSE({ data, event: 'message' });
+      stream.writeSSE({ data });
     };
 
-    hmrEvents.on('reload', listener);
+    hmrEvents.on('hmr-message', listener);
 
     stream.onAbort(() => {
-      hmrEvents.off('reload', listener);
+      hmrEvents.off('hmr-message', listener);
     });
 
     while (true) {
-      await stream.sleep(30000)
+      await stream.sleep(30000);
+      await stream.writeSSE({ data: "ping" });
     }
   })
 });
 
 if (process.env.NODE_ENV !== 'production') {
-  // Cette syntaxe récupère automatiquement le bon type (Number ou Timer object)
-  let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+  let debounceTimer: NodeJS.Timeout | undefined;
+  const folderToWatch = ["./src", "./public"]
 
-  watch('./src/core/themes', { recursive: true }, (eventType, filename) => {
-    if (filename && filename.endsWith('.css')) {
-      if (debounceTimer) clearTimeout(debounceTimer);
-
+  folderToWatch.forEach((folder) => {
+    watch(folder, { recursive: true }, (eventType, filename) => {
+      if (!filename || filename.includes("node_modules")) return;
+      if (debounceTimer) {
+        clearTimeout(debounceTimer);
+      }
       debounceTimer = setTimeout(() => {
-        const normalizedFile = filename.replace(/\\/g, '/');
-        console.log(`✨ Style modifié : ${normalizedFile}`);
-        hmrEvents.emit('reload', JSON.stringify({ file: normalizedFile }));
-        debounceTimer = null;
-      }, 50);
-    }
+        const ext = filename.split(".").pop();
+        if (ext === "css") {
+          console.log(`✨ Changement de css détecté : ${filename}`)
+          hmrEvents.emit("hmr-message", JSON.stringify({
+            type: "style",
+            file: filename.split("/").pop()
+          }))
+        } else if (["ts", "tsx"].includes(ext || "")) {
+          console.log(`⚙️ Changement Code détecté : ${filename}`);
+          hmrEvents.emit("hmr-message", JSON.stringify({ type: 'reload' }));
+        }
+      }, 100);
+    });
   });
 }
 

@@ -1,6 +1,6 @@
 import * as esbuild from 'esbuild';
-import { readdirSync, statSync, existsSync, mkdirSync } from 'node:fs';
-import { join, extname } from 'node:path';
+import { readdirSync, statSync, existsSync, mkdirSync } from 'fs';
+import { join, extname } from 'path';
 
 const clientSrcDir = './src/client';
 const outDir = './public/scripts';

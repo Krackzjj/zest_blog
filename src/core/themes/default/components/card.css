@@ -4,12 +4,16 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
-    justify-content: center;
-    padding: var(--space-6);
+    justify-content: start;
+    padding: var(--space-4);
 
     &>div {
         display: flex;
-        gap: var(--space-2);
+        gap: var(--space-6);
+    }
+
+    &.card-v>div {
+        flex-direction: column;
     }
 
     &:hover {

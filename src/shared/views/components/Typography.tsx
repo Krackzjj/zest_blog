@@ -3,16 +3,20 @@ import { TypographyTags, VariantName, ColorName } from "@/shared/schemas/ui.sche
 import { Child } from "hono/jsx";
 
 interface TypographyProps {
-    tag: TypographyTags;
+    is: TypographyTags;
     variant?: VariantName;
     color?: ColorName;
     children: Child;
+    class?: string[];
+    underline?: boolean;
 }
 
-export const Typography = ({ tag: Tag, variant, color, children }: TypographyProps) => {
+export const Typography = ({ is: Tag, variant, color, class: classname, underline, children }: TypographyProps) => {
     useStyles("typography", true);
+    const classNames = [classname, underline ? "text-ud" : ""].flat();
+
     return (
-        <Tag data-color={color} data-variant={variant}>
+        <Tag class={classNames.join(" ").trim()} data-color={color} data-variant={variant}>
             {children}
         </Tag>
     );
