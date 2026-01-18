@@ -64,18 +64,7 @@ export const StyleGuideView = ({ }: StyleGuideProps) => {
                             <hr />
                         </Card>
                     </div>
-                    <div className="style-card-v">
-                        <Card direction="vertical" title={{ text: "Liens", underline: true }}>
-                            <p>Lien par défaut {"<a>"}</p>
-                            <p>Lien hover {"<a :hover>"}</p>
-                            <p>Lien active {"<a :hover>"}</p>
-                        </Card>
-                        <Card direction="vertical" title={{ text: "Textes", underline: true }}>
-                            <p>Text désactivé {"<span>"}</p>
-                            <p>Text sélectionnable {"<p :selection>"}</p>
-                            <p>Text Highlight {"<mark>"}</p>
-                        </Card>
-                    </div>
+                    <Card img="/public/assets/images/placeholders/avatar.png" direction="vertical" title={{ text: "Placeholder", underline: true }} />
                 </div>
             </section>
         </>

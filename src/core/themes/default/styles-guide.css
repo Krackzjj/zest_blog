@@ -23,6 +23,11 @@
     flex-direction: column;
 }
 
+.style-img {
+    height: 100%;
+    object-fit: cover;
+}
+
 .ff-jm {
     font-family: var(--font-mono);
 }
