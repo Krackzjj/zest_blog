@@ -1,4 +1,3 @@
-import { useFonts, useScripts, useStyles } from "@/shared/hooks/use-ressources.ts";
 import Palette from "../components/Palette.tsx";
 import { Card } from "@/shared/views/components/Card.tsx";
 import { Typography } from "@/shared/views/components/Typography.tsx";
@@ -10,10 +9,6 @@ import { Ol } from "@/shared/views/components/Lists/Ol.tsx";
 interface StyleGuideProps {
 }
 export const StyleGuideView = ({ }: StyleGuideProps) => {
-    useFonts('Inter');
-    useStyles('styles-guide')
-    useScripts("styles-guide", true);
-
     const colors: ColorName[] = ["accent", "primary", "secondary", "neutral", "success", "danger", "info", "warning"];
     const headings: TypographyTags[] = ["h1", "h2", "h3", "h4", "h5", "h6"];
     const fontFams: { font: FontName, href: string, className: string }[] = [
@@ -64,7 +59,7 @@ export const StyleGuideView = ({ }: StyleGuideProps) => {
                             <hr />
                         </Card>
                     </div>
-                    <Card img="/public/assets/images/placeholders/avatar.png" direction="vertical" title={{ text: "Placeholder", underline: true }} />
+                    <Card img="placeholders/1:1-2.png" direction="vertical" title={{ text: "Images", underline: true }} />
                 </div>
             </section>
         </>

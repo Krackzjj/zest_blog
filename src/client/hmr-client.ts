@@ -1,57 +1,49 @@
-let isFirstConnexion = true;
+let isInitialConnection = true;
 
-const connectHMR = () => {
-    const evtSource = new EventSource("/__hmr");
+function connectHMR() {
+    const es = new EventSource("/__hmr");
 
-    evtSource.onopen = () => {
-        if (!isFirstConnexion) {
-            console.log("♻️ Serveur reconnecté, rechargement...")
+    es.onopen = () => {
+        console.log("🚀 HMR: Connecté au serveur");
+
+        if (!isInitialConnection) {
+            console.log("🔄 Code serveur modifié, rechargement...");
             window.location.reload();
-        } else {
-            console.log("✅ Connexion HMR établie");
-            isFirstConnexion = false;
         }
+        isInitialConnection = false;
     };
 
-    evtSource.onmessage = (event) => {
+    es.onmessage = (event) => {
         if (event.data === "connected" || event.data === "ping") return;
 
         try {
-            const data = JSON.parse(event.data);
-            console.log("💎 Action HMR :", data.type, "pour", data.file);
+            const payload = JSON.parse(event.data);
 
-            if (data.type === 'style') {
-                const links = document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]');
-                let found = false;
+            if (payload.type === "style") {
+                const links = document.querySelectorAll('link[rel="stylesheet"]');
 
-                links.forEach(link => {
-                    const linkFilename = link.href.split('/').pop()?.split('?')[0];
+                links.forEach((link) => {
+                    const href = link.getAttribute("href");
+                    if (!href) return;
 
-                    if (linkFilename === data.file) {
-                        const url = new URL(link.href, window.location.origin);
-                        url.searchParams.set('t', Date.now().toString());
+                    const url = new URL(href, window.location.origin);
 
-                        link.href = url.pathname + url.search;
-                        console.log(`✅ Style mis à jour : ${linkFilename}`);
-                        found = true;
-                    }
+                    url.searchParams.set("t", Date.now().toString());
+
+                    link.setAttribute("href", url.pathname + url.search);
                 });
 
-                if (!found) {
-                    console.warn(`⚠️ Aucun <link> trouvé pour le fichier : ${data.file}`);
-                }
-            }
-            else if (data.type === 'reload') {
-                window.location.reload();
+                console.log("🎨 Style mis à jour");
             }
         } catch (err) {
-            console.error("❌ Erreur HMR :", err);
+            console.error("Erreur HMR:", err);
         }
     };
 
-    evtSource.onerror = () => {
-        console.warn("🔌 Connexion HMR perdue...");
-    }
+    es.onerror = () => {
+        es.close();
+        setTimeout(connectHMR, 1000);
+    };
 }
 
 connectHMR();

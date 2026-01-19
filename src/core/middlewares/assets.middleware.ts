@@ -13,26 +13,26 @@ export const registerAssets = (app: Hono<ZestEnv>) => {
   app.use("/favicon.svg", serveStatic({ path: join(root, "public/favicon.svg") }));
 
   app.use(
-    "/assets/core/*",
+    "/js/*",
     serveStatic({
-      root,
-      rewriteRequestPath: (path) => path.replace(/^\/assets\/core/, "src/core/themes"),
+      root: join(root, "public/scripts"),
+      rewriteRequestPath: (path) => path.replace(/^\/js/, ""),
     })
   );
 
   app.use(
-    "/assets/themes/*",
+    "/images/*",
     serveStatic({
-      root,
-      rewriteRequestPath: (path) => path.replace(/^\/assets\/themes/, "src/core/themes"),
+      root: join(root, "public/assets/images"),
+      rewriteRequestPath: (path) => path.replace(/^\/images/, ""),
     })
   );
 
   app.use(
-    "/assets/fonts/*",
+    "/css/*",
     serveStatic({
-      root,
-      rewriteRequestPath: (path) => path.replace(/^\/assets\/fonts/, "src/core/themes/fonts"),
+      root: join(root, "public/styles"),
+      rewriteRequestPath: (path) => path.replace(/^\/css/, ""),
     })
   );
 };

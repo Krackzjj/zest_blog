@@ -1,4 +1,3 @@
-import { useStyles } from "@/shared/hooks/use-ressources.ts";
 import { TypographyTags, VariantName, ColorName } from "@/shared/schemas/ui.schema.ts";
 import { Child } from "hono/jsx";
 
@@ -12,7 +11,6 @@ interface TypographyProps {
 }
 
 export const Typography = ({ is: Tag, variant, color, class: classname, underline, children }: TypographyProps) => {
-    useStyles("typography", true);
     const classNames = [classname, underline ? "text-ud" : ""].flat();
 
     return (

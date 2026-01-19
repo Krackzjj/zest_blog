@@ -6,6 +6,6 @@ import SGR from "./styleguide/api/stylesguide.router.tsx";
 const appRouter = new Hono<ZestEnv>;
 
 appRouter.route("/", blogRouter)
-appRouter.route("/sg", SGR)
+appRouter.route("/components-lab", SGR)
 
 export default appRouter;
