@@ -1,8 +1,8 @@
 import { Hono } from "hono";
-import { StyleGuideController } from "./stylesguide.controller.tsx";
+import { LabController } from "./lab.controller.tsx";
 
 const SGR = new Hono();
-const controller = new StyleGuideController();
+const controller = new LabController();
 
 SGR.get("/", (c) => controller.index(c));
 

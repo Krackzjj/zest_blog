@@ -27,6 +27,8 @@ export const registerAssets = (app: Hono<ZestEnv>) => {
     })
   );
 
+  app.get("/js/htmx.js", serveStatic({ path: "./node_modules/htmx.org/dist/htmx.min.js" }));
+
   app.use(
     "/images/*",
     serveStatic({

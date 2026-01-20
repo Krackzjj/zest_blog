@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/client/zest-htmx.ts"],
+  "sourcesContent": ["document.addEventListener('DOMContentLoaded', () => {\n    document.body.addEventListener(\"htmx:beforeSwap\", (e: any) => {\n        if (e.detail.xhr.status === 404 || e.detail.xhr.status === 500) {\n            e.detail.shouldSwap = true;\n            e.detail.isError = false;\n        }\n    });\n    document.body.addEventListener('htmx:responseError', (evt: any) => {\n        console.error('HTMX Error:', evt.detail.xhr.status, evt.detail.xhr.responseText);\n    });\n});"],
+  "mappings": ";AAAA,SAAS,iBAAiB,oBAAoB,MAAM;AAChD,WAAS,KAAK,iBAAiB,mBAAmB,CAAC,MAAW;AAC1D,QAAI,EAAE,OAAO,IAAI,WAAW,OAAO,EAAE,OAAO,IAAI,WAAW,KAAK;AAC5D,QAAE,OAAO,aAAa;AACtB,QAAE,OAAO,UAAU;AAAA,IACvB;AAAA,EACJ,CAAC;AACD,WAAS,KAAK,iBAAiB,sBAAsB,CAAC,QAAa;AAC/D,YAAQ,MAAM,eAAe,IAAI,OAAO,IAAI,QAAQ,IAAI,OAAO,IAAI,YAAY;AAAA,EACnF,CAAC;AACL,CAAC;",
+  "names": []
+}

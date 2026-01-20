@@ -6,15 +6,20 @@ interface TypographyProps {
     variant?: VariantName;
     color?: ColorName;
     children: Child;
-    class?: string[];
+    class?: string;
     underline?: boolean;
 }
 
 const Typography = ({ is: Tag, variant, color, class: classname, underline, children }: TypographyProps) => {
-    const classNames = [classname, underline ? "text-ud" : ""].flat();
-
+    if (!classname) {
+        return (
+            <Tag data-color={color} data-variant={variant}>
+                {children}
+            </Tag>
+        )
+    }
     return (
-        <Tag class={classNames.join(" ").trim()} data-color={color} data-variant={variant}>
+        <Tag class={classname} data-color={color} data-variant={variant}>
             {children}
         </Tag>
     );

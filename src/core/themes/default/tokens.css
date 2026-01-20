@@ -13,48 +13,74 @@
 
     --bg-page: hsl(39, 51%, 86%);
     --bg-card: hsl(39, 30%, 94%);
+    --bg-card-dark: hsl(39, 51%, 82%);
     --bg-code: hsl(35, 20%, 18%);
 
     --selection-bg: hsl(35, 45%, 30%);
     --selection-text: #ffffff;
 
-    --text-primary: hsl(35, 30%, 20%);
-    --text-secondary: hsl(35, 20%, 40%);
+    --text-default: hsl(35, 30%, 20%);
+    --text-default-light: hsl(35, 20%, 40%);
+    --text-default-dark: hsl(35, 20%, 10%);
     --text-muted: hsl(35, 15%, 60%);
 
     --border: hsl(39, 30%, 80%);
 
     --accent: hsl(var(--color-accent));
-    --accent-light: hsl(165, 70%, 85%);
+    --text-accent: hsl(165, 70%, 95%);
+    --accent-light: hsl(165, 70%, 65%);
+    --text-accent-light: hsl(165, 70%, 20%);
     --accent-dark: hsl(165, 70%, 30%);
+    --text-accent-dark: hsl(165, 70%, 95%);
 
     --primary: hsl(var(--color-primary));
-    --primary-light: hsl(222, 70%, 85%);
+    --text-primary: hsl(222, 75%, 98%);
+    --primary-light: hsl(222, 70%, 65%);
+    --text-primary-light: hsl(222, 80%, 25%);
     --primary-dark: hsl(222, 80%, 40%);
+    --text-primary-dark: hsl(222, 80%, 98%);
 
     --secondary: hsl(var(--color-secondary));
-    --secondary-light: hsl(262, 60%, 85%);
+    --text-secondary: hsl(262, 60%, 98%);
+    --secondary-light: hsl(262, 60%, 65%);
+    --text-secondary-light: hsl(262, 60%, 25%);
     --secondary-dark: hsl(262, 60%, 45%);
+    --text-secondary-dark: hsl(262, 60%, 98%);
 
-    --neutral-light: hsl(39, 20%, 96%);
+    --neutral-light: hsl(39, 20%, 65%);
+    --text-neutral-light: hsl(35, 25%, 20%);
     --neutral: hsl(var(--color-neutral));
+    --text-neutral: hsl(35, 25%, 98%);
     --neutral-dark: hsl(35, 25%, 25%);
+    --text-neutral-dark: hsl(35, 25%, 98%);
 
     --success: hsl(var(--color-success));
-    --success-light: hsl(145, 60%, 85%);
+    --text-success: hsl(145, 60%, 98%);
+    --success-light: hsl(145, 60%, 65%);
+    --text-success-light: hsl(145, 60%, 25%);
     --success-dark: hsl(145, 60%, 30%);
+    --text-success-dark: hsl(145, 60%, 98%);
 
     --danger: hsl(var(--color-danger));
-    --danger-light: hsl(355, 75%, 90%);
+    --text-danger: hsl(355, 75%, 98%);
+    --danger-light: hsl(355, 75%, 65%);
+    --text-danger-light: hsl(355, 75%, 25%);
     --danger-dark: hsl(355, 75%, 40%);
+    --text-danger-dark: hsl(355, 75%, 98%);
 
     --warning: hsl(var(--color-warning));
-    --warning-light: hsl(35, 95%, 90%);
+    --text-warning: hsl(35, 95%, 15%);
+    --warning-light: hsl(35, 95%, 65%);
+    --text-warning-light: hsl(35, 95%, 20%);
     --warning-dark: hsl(35, 95%, 40%);
+    --text-warning-dark: hsl(35, 95%, 98%);
 
     --info: hsl(var(--color-info));
-    --info-light: hsl(200, 70%, 90%);
+    --text-info: hsl(200, 70%, 98%);
+    --info-light: hsl(200, 70%, 65%);
+    --text-info-light: hsl(200, 70%, 20%);
     --info-dark: hsl(200, 70%, 40%);
+    --text-info-dark: hsl(200, 70%, 98%);
 
     --link: var(--primary);
     --link-hover: var(--primary-dark);

@@ -1,10 +1,10 @@
 import { render } from "@/shared/utils/render.ts";
 import { Context } from "hono";
-import { StyleGuideView } from "../views/StylesGuideView.tsx";
+import { LabView } from "../views/LabView.tsx";
 
-export class StyleGuideController {
+export class LabController {
     async index(c: Context) {
-        const view = <StyleGuideView />;
+        const view = <LabView />;
         return await render(c, view, { title: 'Laboratoire de composants' });
     }
 }

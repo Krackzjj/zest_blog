@@ -1,8 +1,8 @@
 import { Hono } from "hono";
 import { serve } from "@hono/node-server";
-import { serveStatic } from "@hono/node-server/serve-static";
-
 import { Child } from "hono/jsx";
+
+import { handleError, handleNotFound } from "@core/errors/handler.tsx";
 import { registerRenderer } from "@core/middlewares/renderer.middleware.ts";
 import { registerAssets } from "@core/middlewares/assets.middleware.ts";
 import { registerLogger } from "@core/middlewares/logs.middleware.ts";
@@ -12,7 +12,7 @@ import AppRouter from "@modules/shared.module.ts";
 import EventEmitter from "events";
 import { streamSSE } from "hono/streaming";
 import { watch } from "fs";
-import { handleError, handleNotFound } from "@core/errors/handler.tsx";
+
 
 export type ZestEnv = {
   Variables: {
@@ -76,10 +76,6 @@ registerLogger(app);
 app.route("/", AppRouter);
 app.notFound(handleNotFound);
 app.onError(handleError)
-
-app.get('/scripts/htmx.js', serveStatic({
-  path: './node_modules/htmx.org/dist/htmx.min.js'
-}));
 
 serve(
   {

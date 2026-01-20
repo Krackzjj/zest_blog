@@ -1,0 +1,12 @@
+.badge {
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+
+    &.pill {
+        border-radius: var(--radius-xl);
+    }
+}

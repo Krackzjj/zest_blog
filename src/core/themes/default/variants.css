@@ -1,0 +1,147 @@
+*[data-color="accent"] {
+    color: var(--accent);
+
+    &.style-palette,
+    &.badge {
+        background-color: var(--accent);
+        color: var(--text-accent);
+    }
+}
+
+*[data-color="primary"] {
+    color: var(--primary);
+
+    &.style-palette,
+    &.badge {
+        background-color: var(--primary);
+        color: var(--text-primary);
+    }
+}
+
+*[data-color="secondary"] {
+    color: var(--secondary);
+
+    &.style-palette,
+    &.badge {
+        background-color: var(--secondary);
+        color: var(--text-secondary);
+    }
+}
+
+*[data-color="neutral"] {
+    color: var(--neutral);
+
+    &.style-palette,
+    &.badge {
+        background-color: var(--neutral);
+        color: var(--text-neutral);
+    }
+}
+
+*[data-color="success"] {
+    color: var(--success);
+
+    &.style-palette,
+    &.badge {
+        background-color: var(--success);
+        color: var(--text-success);
+    }
+}
+
+*[data-color="danger"] {
+    color: var(--danger);
+
+    &.style-palette,
+    &.badge {
+        background-color: var(--danger);
+        color: var(--text-danger);
+    }
+}
+
+*[data-color="info"] {
+    color: var(--info);
+
+    &.style-palette,
+    &.badge {
+        background-color: var(--info);
+        color: var(--text-info);
+    }
+}
+
+*[data-color="warning"] {
+    color: var(--warning);
+
+    &.style-palette,
+    &.badge {
+        background-color: var(--warning);
+        color: var(--text-warning);
+    }
+}
+
+*[data-variant="xs"] {
+    font-size: var(--text-xs);
+
+    &.badge {
+        padding-inline: .5rem;
+        height: 1.2rem;
+    }
+}
+
+*[data-variant="sm"] {
+    font-size: var(--text-sm);
+
+    &.badge {
+        padding-inline: .7rem;
+        height: 1.4rem;
+    }
+}
+
+*[data-variant="md"] {
+    font-size: var(--text-base);
+
+    &.badge {
+        padding-inline: .9rem;
+        height: 1.6rem;
+    }
+}
+
+*[data-variant="lg"] {
+    font-size: var(--text-lg);
+
+    &.badge {
+        padding-inline: 1.2rem;
+        height: 1.8rem;
+    }
+}
+
+*[data-variant="xl"] {
+    font-size: var(--text-xl);
+
+    &.badge {
+        padding-inline: 1.4rem;
+        height: 2rem;
+    }
+}
+
+*[data-variant="2xl"] {
+    font-size: var(--text-2xl);
+
+    &.badge {
+        padding-inline: 1.6rem;
+        height: 2.2rem;
+    }
+}
+
+*[data-variant="3xl"] {
+    font-size: var(--text-3xl);
+
+    &.badge {
+        padding-inline: 1.8rem;
+        height: 2.4rem;
+    }
+}
+
+*[data-variant="column"] {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,21 +1,21 @@
 @import "../reset.css";
 @import "./tokens.css";
-@import "../fonts/inter.css";
-@import "../fonts/jetbrains-mono.css";
+@import "./variants.css";
 @import "../fonts/outfit.css";
 @import "../fonts/plus-jakarta-sans.css";
 @import "../fonts/space-mono.css";
 @import "./components/index.css";
-@import "./styles-guide.css";
+@import "./pages/index.css";
 
 body {
     font-family: var(--font-sans);
     font-size: var(--text-base);
     line-height: var(--leading-normal);
-    color: var(--text-primary);
+    color: var(--text-default);
     background: var(--bg-page);
     max-width: var(--max-width-7xl);
     margin: auto;
+    padding: 1rem;
 }
 
 h1,
@@ -27,7 +27,7 @@ h6 {
     font-family: var(--font-heading);
     font-weight: var(--font-black);
     line-height: var(--leading-tight);
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 h1 {
@@ -126,5 +126,23 @@ main {
             font-weight: var(--font-bold);
             text-decoration: underline;
         }
+    }
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.high-content {
+    display: flex;
+    gap: 1rem;
+
+    &>img {
+        width: 400px;
+        height: 150px;
+        object-fit: cover;
+        border: 2px solid var(--neutral-dark)
     }
 }

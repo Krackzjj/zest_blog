@@ -1,10 +1,11 @@
 import { Child } from "hono/jsx";
 import type { PageMetadata } from "@shared/schemas/html.schema.ts";
 import type { ThemeName } from "@shared/schemas/ui.schema.ts";
-import { ZestProvider } from "@/shared/contexts/zest-context.tsx";
+import { ZestProvider } from "@shared/contexts/zest-context.tsx";
 import { Context } from "hono";
-import { asset } from "@/core/utils/assets.ts";
+import { asset } from "@core/utils/assets.ts";
 import { NavBar } from "./components/index.ts";
+import { Card, Typography } from "@ui";
 
 interface BaseTemplateProps {
     children: Child;
@@ -30,13 +31,17 @@ export const BaseTemplate = ({
                     <link rel="stylesheet" href={asset.css(theme)} />
                     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
                     <script src={asset.js("htmx")} defer></script>
+                    <script src={asset.js("zest-htmx")} defer></script>
                     {process.env.NODE_ENV === 'development' && (
                         <script src="/public/scripts/hmr-client.js" defer />
                     )}
                 </head>
                 <body hx-boost="true">
-                    <header>
+                    <header class="main-header">
                         <NavBar c={context} />
+                        <Card class="high-content" img="error.png">
+                            <Typography is="h3" underline>Nouvel article</Typography>
+                        </Card>
                     </header>
                     <main>
                         {children}
