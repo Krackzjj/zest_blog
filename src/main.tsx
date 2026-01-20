@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { serve } from "@hono/node-server";
+import { serveStatic } from "@hono/node-server/serve-static";
 
 import { Child } from "hono/jsx";
 import { registerRenderer } from "@core/middlewares/renderer.middleware.ts";
@@ -75,6 +76,10 @@ registerLogger(app);
 app.route("/", AppRouter);
 app.notFound(handleNotFound);
 app.onError(handleError)
+
+app.get('/scripts/htmx.js', serveStatic({
+  path: './node_modules/htmx.org/dist/htmx.min.js'
+}));
 
 serve(
   {

@@ -479,7 +479,7 @@ ol {
     flex-direction: column;
   }
   &:hover {
-    border: 1px solid var(--secondary);
+    border: 1px solid var(--neutral);
   }
   & > img {
     height: 100%;
@@ -600,10 +600,19 @@ div[data-color=warning] {
   object-fit: cover;
 }
 .ff-jm {
-  font-family: var(--font-mono);
+  font-family: "JetBrains Mono";
 }
 .ff-i {
-  font-family: var(--font-sans);
+  font-family: "Inter";
+}
+.ff-o {
+  font-family: "Outfit";
+}
+.ff-jk {
+  font-family: "Plus Jakarta Sans";
+}
+.ff-sm {
+  font-family: "Space Mono";
 }
 
 /* src/core/themes/default/main.css */
@@ -693,7 +702,7 @@ main {
 }
 .nav-menu {
   display: inline-flex;
-  gap: 1rem;
+  flex-direction: column;
   & > .nav-item {
     display: flex;
     gap: .2rem;

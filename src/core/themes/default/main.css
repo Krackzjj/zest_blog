@@ -8,7 +8,6 @@
 @import "./components/index.css";
 @import "./styles-guide.css";
 
-
 body {
     font-family: var(--font-sans);
     font-size: var(--text-base);
@@ -116,7 +115,7 @@ main {
 
 .nav-menu {
     display: inline-flex;
-    gap: 1rem;
+    flex-direction: column;
 
     &>.nav-item {
         display: flex;

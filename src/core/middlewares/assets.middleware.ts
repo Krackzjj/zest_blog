@@ -6,7 +6,14 @@ import { serveStatic } from "@hono/node-server/serve-static";
 export const registerAssets = (app: Hono<ZestEnv>) => {
   const root = './';
 
-  app.use("/public/*", serveStatic({ root: './' }));
+  app.use("/public/*", async (c, next) => {
+    await next();
+    if (c.res.ok) {
+      c.res.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+    }
+  });
+
+  app.use("/public/*", serveStatic({ root: root }));
 
   /** Favicon */
   app.use("/favicon.ico", serveStatic({ path: join(root, "public/favicon.png") }));

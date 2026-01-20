@@ -29,11 +29,12 @@ export const BaseTemplate = ({
                     {meta.description && <meta name="description" content={meta.description} />}
                     <link rel="stylesheet" href={asset.css(theme)} />
                     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+                    <script src={asset.js("htmx")} defer></script>
                     {process.env.NODE_ENV === 'development' && (
                         <script src="/public/scripts/hmr-client.js" defer />
                     )}
                 </head>
-                <body>
+                <body hx-boost="true">
                     <header>
                         <NavBar c={context} />
                     </header>

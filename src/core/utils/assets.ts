@@ -1,6 +1,6 @@
 const ASSET_PATH = {
     css: './css',
-    js: './js',
+    js: './scripts',
     image: '/images',
     ico: '/images/icons'
 } as const;

@@ -1,10 +1,8 @@
 import { z } from "zod/v4"
-import { PageMetadata } from "@shared/schemas/html.schema.ts";
-import { Child } from "hono/jsx";
 
 export const ThemeNameSchema = z.enum(["default", "dark", "zest-gold"]);
 export type ThemeName = z.infer<typeof ThemeNameSchema>;
-export const FontNameSchema = z.enum(["Inter", "JetBrains Mono"]);
+export const FontNameSchema = z.enum(["Inter", "JetBrains Mono", "Outfit", "Plus Jakarta Sans", "Space Mono"]);
 export type FontName = z.infer<typeof FontNameSchema>;
 
 export const VariantName = z.enum(["xs", "sm", "md", "lg", "xl", "2xl", "3xl"]);
