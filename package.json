@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "dev:server": "tsx --env-file=.env --watch-path=.env --watch-path=src/modules src/main.tsx",
+    "dev:server": "tsx --env-file=.env --watch-path=.env --watch-path=src/modules --watch-path=src/core/templates --watch-path=src/ui src/main.tsx",
     "dev:client": "tsx scripts/build-client.ts --watch",
     "dev": "pnpm run /^dev:/",
     "build": "tsx scripts/build-client.ts && tsc",

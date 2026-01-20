@@ -9,8 +9,8 @@ export const registerAssets = (app: Hono<ZestEnv>) => {
   app.use("/public/*", serveStatic({ root: './' }));
 
   /** Favicon */
-  app.use("/favicon.ico", serveStatic({ path: join(root, "public/favicon.svg") }));
-  app.use("/favicon.svg", serveStatic({ path: join(root, "public/favicon.svg") }));
+  app.use("/favicon.ico", serveStatic({ path: join(root, "public/favicon.png") }));
+  app.use("/favicon.png", serveStatic({ path: join(root, "public/favicon.png") }));
 
   app.use(
     "/js/*",

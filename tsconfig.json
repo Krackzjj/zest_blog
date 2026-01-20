@@ -35,6 +35,9 @@
       ],
       "@contexts/*": [
         "src/shared/contexts/*"
+      ],
+      "@ui": [
+        "src/ui/index.ts"
       ]
     }
   },

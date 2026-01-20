@@ -4,20 +4,21 @@ import type { ThemeName } from "@shared/schemas/ui.schema.ts";
 import { ZestProvider } from "@/shared/contexts/zest-context.tsx";
 import { Context } from "hono";
 import { asset } from "@/core/utils/assets.ts";
+import { NavBar } from "./components/index.ts";
 
-interface BaseProps {
+interface BaseTemplateProps {
     children: Child;
     meta: PageMetadata;
     theme: ThemeName;
     context: Context;
 };
 
-export const Base = ({
+export const BaseTemplate = ({
     meta,
     theme,
     children,
     context
-}: BaseProps & { context: Context }) => {
+}: BaseTemplateProps & { context: Context }) => {
     return (
         <ZestProvider c={context}>
             <html lang={meta.lang || "fr"} data-theme={theme}>
@@ -27,12 +28,15 @@ export const Base = ({
                     <title>ZEST  | {meta.title} </title>
                     {meta.description && <meta name="description" content={meta.description} />}
                     <link rel="stylesheet" href={asset.css(theme)} />
-                    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+                    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
                     {process.env.NODE_ENV === 'development' && (
                         <script src="/public/scripts/hmr-client.js" defer />
                     )}
                 </head>
                 <body>
+                    <header>
+                        <NavBar c={context} />
+                    </header>
                     <main>
                         {children}
                     </main>

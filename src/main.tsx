@@ -11,6 +11,7 @@ import AppRouter from "@modules/shared.module.ts";
 import EventEmitter from "events";
 import { streamSSE } from "hono/streaming";
 import { watch } from "fs";
+import { handleError, handleNotFound } from "@core/errors/handler.tsx";
 
 export type ZestEnv = {
   Variables: {
@@ -72,6 +73,8 @@ registerRenderer(app);
 registerLogger(app);
 
 app.route("/", AppRouter);
+app.notFound(handleNotFound);
+app.onError(handleError)
 
 serve(
   {

@@ -57,45 +57,47 @@ h6 {
 
 /* src/core/themes/default/tokens.css */
 :root {
-  --color-accent: 165 70% 45%;
-  --color-primary: 222 70% 55%;
-  --color-secondary: 262 70% 58%;
-  --color-neutral: 215 16% 42%;
-  --color-success: 135 55% 42%;
-  --color-danger: 350 70% 58%;
-  --color-warning: 30 92% 55%;
-  --color-info: 200 70% 55%;
-  --accent: hsl(165, 70%, 45%);
-  --accent-light: hsl(165, 70%, 75%);
+  --color-primary: 222 75% 50%;
+  --color-secondary: 262 60% 60%;
+  --color-accent: 165 70% 40%;
+  --color-neutral: 35 25% 45%;
+  --color-success: 145 60% 45%;
+  --color-danger: 355 75% 55%;
+  --color-warning: 35 95% 55%;
+  --color-info: 200 70% 50%;
+  --bg-page: hsl(39, 51%, 86%);
+  --bg-card: hsl(39, 30%, 94%);
+  --bg-code: hsl(35, 20%, 18%);
+  --selection-bg: hsl(35, 45%, 30%);
+  --selection-text: #ffffff;
+  --text-primary: hsl(35, 30%, 20%);
+  --text-secondary: hsl(35, 20%, 40%);
+  --text-muted: hsl(35, 15%, 60%);
+  --border: hsl(39, 30%, 80%);
+  --accent: hsl(var(--color-accent));
+  --accent-light: hsl(165, 70%, 85%);
   --accent-dark: hsl(165, 70%, 30%);
-  --primary: hsl(222, 70%, 55%);
-  --primary-light: hsl(222, 70%, 75%);
-  --primary-dark: hsl(222, 70%, 40%);
-  --secondary: hsl(262, 70%, 58%);
-  --secondary-light: hsl(262, 70%, 83%);
-  --secondary-dark: hsl(262, 70%, 43%);
-  --success: hsl(135, 55%, 42%);
-  --success-light: hsl(135, 55%, 82%);
-  --success-dark: hsl(135, 55%, 27%);
-  --danger: hsl(350, 70%, 58%);
-  --danger-light: hsl(350, 70%, 88%);
-  --danger-dark: hsl(350, 70%, 43%);
-  --warning: hsl(30, 92%, 55%);
-  --warning-light: hsl(30, 92%, 90%);
-  --warning-dark: hsl(30, 92%, 40%);
-  --info: hsl(200, 70%, 55%);
+  --primary: hsl(var(--color-primary));
+  --primary-light: hsl(222, 70%, 85%);
+  --primary-dark: hsl(222, 80%, 40%);
+  --secondary: hsl(var(--color-secondary));
+  --secondary-light: hsl(262, 60%, 85%);
+  --secondary-dark: hsl(262, 60%, 45%);
+  --neutral-light: hsl(39, 20%, 96%);
+  --neutral: hsl(var(--color-neutral));
+  --neutral-dark: hsl(35, 25%, 25%);
+  --success: hsl(var(--color-success));
+  --success-light: hsl(145, 60%, 85%);
+  --success-dark: hsl(145, 60%, 30%);
+  --danger: hsl(var(--color-danger));
+  --danger-light: hsl(355, 75%, 90%);
+  --danger-dark: hsl(355, 75%, 40%);
+  --warning: hsl(var(--color-warning));
+  --warning-light: hsl(35, 95%, 90%);
+  --warning-dark: hsl(35, 95%, 40%);
+  --info: hsl(var(--color-info));
   --info-light: hsl(200, 70%, 90%);
   --info-dark: hsl(200, 70%, 40%);
-  --neutral-light: hsl(215, 8%, 96%);
-  --neutral: hsl(215, 16%, 42%);
-  --neutral-dark: hsl(215, 16%, 20%);
-  --bg-page: white;
-  --bg-card: var(--neutral-light);
-  --bg-code: var(--secondary-dark);
-  --text-primary: hsl(215, 16%, 20%);
-  --text-secondary: hsl(215, 16%, 42%);
-  --text-muted: hsl(215, 16%, 65%);
-  --border: hsl(215, 8%, 85%);
   --link: var(--primary);
   --link-hover: var(--primary-dark);
   --link-active: var(--accent);
@@ -179,12 +181,10 @@ h6 {
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
-  --font-mono:
-    "JetBrains Mono",
-    "Fira Code",
-    monospace;
+  --font-heading: "Outfit", sans-serif;
+  --font-mono: "Space Mono", monospace;
   --font-sans:
-    "Inter",
+    "Plus Jakarta Sans",
     system-ui,
     -apple-system,
     sans-serif;
@@ -280,6 +280,96 @@ h6 {
   font-family: "JetBrains Mono";
   src: url("./fonts/JetBrainsMono-ExtraBold.woff2") format("woff2");
   font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* src/core/themes/fonts/outfit.css */
+@font-face {
+  font-family: "Outfit";
+  src: url("./fonts/Outfit-Thin.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Outfit";
+  src: url("./fonts/Outfit-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Outfit";
+  src: url("./fonts/Outfit-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Outfit";
+  src: url("./fonts/Outfit-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Outfit";
+  src: url("./fonts/Outfit-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* src/core/themes/fonts/plus-jakarta-sans.css */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("./fonts/PlusJakartaSans-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("./fonts/PlusJakartaSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("./fonts/PlusJakartaSans-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("./fonts/PlusJakartaSans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("./fonts/PlusJakartaSans-ExtraBold.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* src/core/themes/fonts/space-mono.css */
+@font-face {
+  font-family: "Space Mono";
+  src: url("./fonts/SpaceMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Mono";
+  src: url("./fonts/SpaceMono-Bold.woff2") format("woff2");
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -532,7 +622,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-mono);
+  font-family: var(--font-heading);
   font-weight: var(--font-black);
   line-height: var(--leading-tight);
   color: var(--text-primary);
@@ -582,5 +672,36 @@ main {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+}
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+::-moz-selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  & > .nav-logo > img#logo {
+    width: 150px;
+  }
+}
+.nav-menu {
+  display: inline-flex;
+  gap: 1rem;
+  & > .nav-item {
+    display: flex;
+    gap: .2rem;
+    &.is-active {
+      color: var(--secondary);
+      font-weight: var(--font-bold);
+      text-decoration: underline;
+    }
+  }
 }
 /*# sourceMappingURL=default.css.map */

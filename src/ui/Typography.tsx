@@ -1,4 +1,4 @@
-import { TypographyTags, VariantName, ColorName } from "@/shared/schemas/ui.schema.ts";
+import { TypographyTags, VariantName, ColorName } from "@shared/schemas/ui.schema.ts";
 import { Child } from "hono/jsx";
 
 interface TypographyProps {
@@ -10,7 +10,7 @@ interface TypographyProps {
     underline?: boolean;
 }
 
-export const Typography = ({ is: Tag, variant, color, class: classname, underline, children }: TypographyProps) => {
+const Typography = ({ is: Tag, variant, color, class: classname, underline, children }: TypographyProps) => {
     const classNames = [classname, underline ? "text-ud" : ""].flat();
 
     return (
@@ -19,3 +19,5 @@ export const Typography = ({ is: Tag, variant, color, class: classname, underlin
         </Tag>
     );
 };
+
+export default Typography;

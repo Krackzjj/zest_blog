@@ -1,10 +1,7 @@
 import Palette from "../components/Palette.tsx";
-import { Card } from "@/shared/views/components/Card.tsx";
-import { Typography } from "@/shared/views/components/Typography.tsx";
+import { Typography, List, Card } from "@ui";
 import { ColorName, FontName, TypographyTags } from "@/shared/schemas/ui.schema.ts";
-import { Ul } from "@/shared/views/components/Lists/Ul.tsx";
 import { Child } from "hono/jsx";
-import { Ol } from "@/shared/views/components/Lists/Ol.tsx";
 
 interface StyleGuideProps {
 }
@@ -52,8 +49,8 @@ export const StyleGuideView = ({ }: StyleGuideProps) => {
                             {colors.map((color, i) => <Typography color={color} is="span" >{color.charAt(0).toUpperCase() + color.slice(1)}</Typography>)}
                         </Card>
                         <Card direction="horizontal" title={{ text: "Listes", underline: true }}>
-                            <Ul items={listItems} />
-                            <Ol items={listItems} />
+                            <List items={listItems} />
+                            <List ordered items={listItems} />
                         </Card>
                         <Card direction="horizontal" title={{ text: "Diviseur", underline: true }}>
                             <hr />

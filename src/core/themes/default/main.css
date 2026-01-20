@@ -2,6 +2,9 @@
 @import "./tokens.css";
 @import "../fonts/inter.css";
 @import "../fonts/jetbrains-mono.css";
+@import "../fonts/outfit.css";
+@import "../fonts/plus-jakarta-sans.css";
+@import "../fonts/space-mono.css";
 @import "./components/index.css";
 @import "./styles-guide.css";
 
@@ -22,7 +25,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: var(--font-mono);
+    font-family: var(--font-heading);
     font-weight: var(--font-black);
     line-height: var(--leading-tight);
     color: var(--text-primary);
@@ -85,4 +88,44 @@ main {
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
+}
+
+::selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-text);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+::-moz-selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-text);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.nav-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &>.nav-logo>img#logo {
+        width: 150px;
+    }
+}
+
+.nav-menu {
+    display: inline-flex;
+    gap: 1rem;
+
+    &>.nav-item {
+        display: flex;
+        gap: .2rem;
+
+        &.is-active {
+            color: var(--secondary);
+            font-weight: var(--font-bold);
+            text-decoration: underline;
+        }
+    }
 }
