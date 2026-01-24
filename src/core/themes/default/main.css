@@ -13,7 +13,7 @@ body {
     line-height: var(--leading-normal);
     color: var(--text-default);
     background: var(--bg-page);
-    max-width: var(--max-width-7xl);
+    max-width: var(--max-width-8xl);
     margin: auto;
     padding: 1rem;
 }

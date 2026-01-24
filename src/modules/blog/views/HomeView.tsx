@@ -16,26 +16,10 @@ export const HomeView = ({ name }: HomeProps) => {
             <Card class="blog-card-home" {...props} img={{
                 src: "blog1.png",
                 alt: "test", placement: "left"
-            }} />
-            <Card class="blog-card-home" {...props} img={{
-                src: "blog1.png",
-                alt: "test", placement: "left"
-            }} />
-            <Card class="blog-card-home" {...props} img={{
-                src: "blog1.png",
-                alt: "test", placement: "left"
-            }} />
-            <Card class="blog-card-home" {...props} img={{
-                src: "blog1.png",
-                alt: "test", placement: "left"
-            }} />
-            <Card class="blog-card-home" {...props} img={{
-                src: "blog1.png",
-                alt: "test", placement: "left"
-            }} />
-            <Card class="blog-card-home" {...props} img={{
-                src: "blog1.png",
-                alt: "test", placement: "left"
+            }} meta={{
+                date: "2026-01-24",
+                author: "Billy",
+                comments: 2
             }} />
         </section>
     )
