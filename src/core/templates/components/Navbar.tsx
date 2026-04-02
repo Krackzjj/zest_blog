@@ -9,10 +9,14 @@ interface NavbarProps {
 const Navbar = ({ c }: NavbarProps & { c: Context }) => {
     return (
         <nav class="nav-bar">
-            <NavLink className="nav-logo" href="/" c={c}><img id="logo" src={asset.img("logo.png")} /></NavLink>
+            <NavLink className="nav-logo" href="/" c={c}><img id="logo" src={asset.logo("125x125")} /></NavLink>
             <div class="nav-menu">
                 <NavLink className="nav-item" href="/" c={c}>Accueil</NavLink>
                 <NavLink className="nav-item" href="/components-lab" c={c}>Laboratoire de composants</NavLink>
+            </div>
+            <div>
+                <input type="text" name="" id="" />
+                <button>Rechercher</button>
             </div>
         </nav>
     );

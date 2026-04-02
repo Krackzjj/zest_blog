@@ -39,9 +39,6 @@ export const BaseTemplate = ({
                 <body hx-boost="true">
                     <header class="main-header">
                         <NavBar c={context} />
-                        <Card class="high-content" img="error.png">
-                            <Typography is="h3" underline>Nouvel article</Typography>
-                        </Card>
                     </header>
                     <main>
                         {children}

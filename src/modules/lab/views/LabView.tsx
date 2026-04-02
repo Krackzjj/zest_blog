@@ -80,7 +80,7 @@ export const LabView = ({ }: LabProps) => {
                         </Card>
                     </div>
                     <Card dumb class="style-img" title="Images">
-                        <img src={asset.img("placeholders/500x800.png")} alt="" />
+                        <img src={asset.img("placeholders/500x800-3.png")} alt="" />
                     </Card>
                 </div>
                 <Card dumb title="Badges tailles" variant="column">
